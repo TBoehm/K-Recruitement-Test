@@ -1,0 +1,8 @@
+<resources>
+    // Global
+    <string name="app_name">Walk Tracker</string>
+
+    // Main View
+    <string name="ma_tracking_started">Walk tracking started.</string>
+    <string name="ma_tracking_stopped">Walk tracking stopped.</string>
+</resources>
