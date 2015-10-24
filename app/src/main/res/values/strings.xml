@@ -5,4 +5,6 @@
     // Main View
     <string name="ma_tracking_started">Walk tracking started.</string>
     <string name="ma_tracking_stopped">Walk tracking stopped.</string>
+
+    <string name="ma_photo_subheading">by 1$%s</string>
 </resources>

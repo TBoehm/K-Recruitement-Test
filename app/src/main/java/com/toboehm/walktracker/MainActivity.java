@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import butterknife.Bind;
@@ -18,7 +19,10 @@ import butterknife.OnClick;
  */
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.fab) FloatingActionButton startStopB;
+    @Bind(R.id.ma_start_stop_fab)
+    FloatingActionButton startStopFAB;
+    @Bind(R.id.ma_listview)
+    ListView photosListV;
 
     private boolean isTracking = false;
 
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         updateStartStopButton();
     }
 
-    @OnClick(R.id.fab)
+    @OnClick(R.id.ma_start_stop_fab)
     void onStartStopClicked(final View button){
 
         this.isTracking = !isTracking;
@@ -54,10 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private void updateStartStopButton(){
 
         if(isTracking){
-            startStopB.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_stop));
-
+            startStopFAB.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_stop));
         }else{
-            startStopB.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_start));
+            startStopFAB.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_start));
         }
     }
 
