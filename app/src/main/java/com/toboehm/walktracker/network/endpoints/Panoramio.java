@@ -1,6 +1,6 @@
 package com.toboehm.walktracker.network.endpoints;
 
-import com.toboehm.walktracker.network.responsmodel.PPhoto;
+import com.toboehm.walktracker.network.responsmodel.PPhotoResponse;
 
 import retrofit.http.GET;
 import retrofit.http.Headers;
@@ -19,6 +19,6 @@ public interface Panoramio {
             "Content-Type: application/json"
     })
     @GET("/get_panoramas.php?set=public&from=0&to=1&size=medium&mapfilter=false")
-    Observable<PPhoto> getPanorama(@Query("minx") double minLongitude, @Query("miny") double minLatitude,
+    Observable<PPhotoResponse> getPanorama(@Query("minx") double minLongitude, @Query("miny") double minLatitude,
                                    @Query("maxx") double maxLongitude, @Query("maxy") double maxLatitude);
 }

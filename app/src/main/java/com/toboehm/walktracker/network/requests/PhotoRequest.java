@@ -2,7 +2,7 @@ package com.toboehm.walktracker.network.requests;
 
 import android.location.Location;
 
-import com.toboehm.walktracker.network.responsmodel.PPhoto;
+import com.toboehm.walktracker.network.responsmodel.PPhotoResponse;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -11,7 +11,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by Tobias Boehm on 24.10.2015.
  */
-public class PhotoRequest extends Request<PPhoto> {
+public class PhotoRequest extends Request<PPhotoResponse> {
 
     private final double minLongitude;
     private final double maxLongitude;
@@ -34,7 +34,7 @@ public class PhotoRequest extends Request<PPhoto> {
     }
 
     @Override
-    public Observable<PPhoto> getConfiguredObservable() {
+    public Observable<PPhotoResponse> getConfiguredObservable() {
         return panoramioEndpoint.getPanorama(minLongitude, minLatitude, maxLongitude, maxLatitude)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
