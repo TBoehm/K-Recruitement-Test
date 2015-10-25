@@ -11,9 +11,9 @@ import com.toboehm.walktracker.network.responsmodel.PPhoto;
 /**
  * Created by Tobias Boehm on 22.09.2015.
  */
-public class PhotoAdapter extends ArrayAdapter<PPhoto> {
+public class PhotosAdapter extends ArrayAdapter<PPhoto> {
 
-    public PhotoAdapter(final Context context) {
+    public PhotosAdapter(final Context context) {
         super(context, R.layout.support_simple_spinner_dropdown_item);
     }
 
@@ -28,4 +28,5 @@ public class PhotoAdapter extends ArrayAdapter<PPhoto> {
 
         return view;
     }
+
 }
