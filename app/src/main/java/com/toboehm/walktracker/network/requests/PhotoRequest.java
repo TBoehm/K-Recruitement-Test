@@ -30,7 +30,7 @@ public class PhotoRequest extends Request<PPhotoResponse> {
 
     private PhotoRequest(final Location currentLocation) {
 
-        // calculate a picture area around the current location
+        // calculate an area around the current location from which pictures can be taken
         minLongitude = currentLocation.getLongitude() - AREA_DELTA;
         maxLongitude = currentLocation.getLongitude() + AREA_DELTA;
 

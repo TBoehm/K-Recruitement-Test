@@ -18,12 +18,12 @@ public class PPhotoResponse extends BaseModel {
 
 
     public PPhotoResponse(@JsonProperty(PHOTOS_ATTRIBUTE) final List<PPhoto> photos,
-                          @JsonProperty(PHOTOS_COUNT_ATTRIBUTE) final int photoCount){
+                          @JsonProperty(PHOTOS_COUNT_ATTRIBUTE) final int photoCount) {
         this.photos = photos;
         this.photoCount = photoCount;
     }
 
-    public boolean hasPhotos(){
+    public boolean hasPhotos() {
 
         return !photos.isEmpty();
     }

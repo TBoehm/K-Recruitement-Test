@@ -58,7 +58,7 @@ public class PPhotoView extends RelativeLayout {
         ButterKnife.bind(getContext(), this);
     }
 
-    public void setContent(final PPhoto pphoto){
+    public void setContent(final PPhoto pphoto) {
 
         Picasso.with(getContext()).load(pphoto.photoFileURL)
                 .placeholder(getContext().getResources().getDrawable(R.color.primary_light))
