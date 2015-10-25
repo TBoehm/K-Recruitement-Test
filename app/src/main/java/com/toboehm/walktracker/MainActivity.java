@@ -113,11 +113,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private void toggleTracking() {
 
         if (isTracking) {
-
             startTracking();
 
         } else {
-
             stopTracking();
         }
     }
@@ -127,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // remove old track pictures from list view
         photosAdapter.clear();
 
-        // configure and register for location updates
         registerForLocationUpdates();
 
         // get first "last" location and if it is not null get picture for this "start" location
