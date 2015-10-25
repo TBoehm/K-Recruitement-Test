@@ -14,10 +14,10 @@ import rx.schedulers.Schedulers;
  */
 public class PhotoRequest extends Request<PPhotoResponse> {
 
-    private static final double AREA_DELTA = 0.0005;
+    private static final double AREA_DELTA = 0.00075;
 
 
-    public static PhotoRequest createFor(final Location currentLocation){
+    public static PhotoRequest createFor(final Location currentLocation) {
         return new PhotoRequest(currentLocation);
     }
 
@@ -28,7 +28,7 @@ public class PhotoRequest extends Request<PPhotoResponse> {
     private final double maxLatitude;
 
 
-    private PhotoRequest(final Location currentLocation){
+    private PhotoRequest(final Location currentLocation) {
 
         // calculate a picture area around the current location
         minLongitude = currentLocation.getLongitude() - AREA_DELTA;
@@ -38,9 +38,9 @@ public class PhotoRequest extends Request<PPhotoResponse> {
         maxLatitude = currentLocation.getLatitude() + AREA_DELTA / 2;
 
         Log.v("PhotoRequest Vars", "minLongitude = " + minLongitude +
-                                ", maxLongitude = " + maxLongitude +
-                                ", minLatitude = " + minLatitude +
-                                ", maxLatitude = " + maxLatitude);
+                ", maxLongitude = " + maxLongitude +
+                ", minLatitude = " + minLatitude +
+                ", maxLatitude = " + maxLatitude);
     }
 
     @Override
