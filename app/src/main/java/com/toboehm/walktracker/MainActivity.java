@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private static final int LOCATION_UPDATE_INTERVAL_MS = 10000; // around every 10 seconds;
     private static final int MIN_DISTANCE_BETWEEN_WAYPOINTS_M = 100; // meters
-    private static final int MIN_ACCURACY_M = 50; // meters radius for 68% acc
+    private static final int MIN_ACCURACY_M = 66; // meters radius for 68% acc
 
 
     @Bind(R.id.ma_start_stop_fab)
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     @OnClick(R.id.ma_start_stop_fab)
-    void onStartStopClicked(final View button){
+    void onStartStopClicked(final View button) {
 
         this.isTracking = !isTracking;
 
@@ -112,11 +112,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void toggleTracking() {
 
-        if(isTracking){
+        if (isTracking) {
 
             startTracking();
 
-        }else{
+        } else {
 
             stopTracking();
         }
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         // get first "last" location and if it is not null get picture for this "start" location
         this.lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        if(this.lastLocation != null){
+        if (this.lastLocation != null) {
 
             requestPanoramioPhoto(this.lastLocation);
         }
@@ -150,17 +150,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onLocationChanged(final Location currentLocation) {
 
         // if we don't have a "last" location
-        if(lastLocation == null){
+        if (lastLocation == null) {
 
             lastLocation = currentLocation;
-            
-            // if the new location is accurate enough and the distance between last location and current location is at least 100 meters
-        }else{
+
+        } else {
 
             final float distance = lastLocation.distanceTo(currentLocation);
             Log.v("Point distance", "Distance between last location and current location is about " + distance + "m. Accuracy is " + currentLocation.getAccuracy());
-            if((currentLocation.getAccuracy() <= MIN_ACCURACY_M) &&
-                    (distance >= MIN_DISTANCE_BETWEEN_WAYPOINTS_M)){
+            // if the new location is accurate enough and the distance between last location and current location is at least 100 meters
+            if ((currentLocation.getAccuracy() <= MIN_ACCURACY_M) &&
+                    (distance >= MIN_DISTANCE_BETWEEN_WAYPOINTS_M)) {
 
                 requestPanoramioPhoto(currentLocation);
                 lastLocation = currentLocation;
@@ -197,25 +197,25 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
     private void stopTracking() {
-        
+
         lastLocation = null;
         LocationServices.FusedLocationApi.removeLocationUpdates(this.googleApiClient, this);
     }
 
     private void informUser() {
 
-        if(isTracking){
+        if (isTracking) {
             Toast.makeText(MainActivity.this, R.string.ma_tracking_started, Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Toast.makeText(MainActivity.this, R.string.ma_tracking_stopped, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void updateStartStopButton(){
+    private void updateStartStopButton() {
 
-        if(isTracking){
+        if (isTracking) {
             startStopFAB.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_stop));
-        }else{
+        } else {
             startStopFAB.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_start));
         }
     }
