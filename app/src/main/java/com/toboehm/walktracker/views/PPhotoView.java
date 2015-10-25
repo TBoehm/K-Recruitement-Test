@@ -3,6 +3,7 @@ package com.toboehm.walktracker.views;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -23,17 +24,46 @@ public class PPhotoView extends RelativeLayout {
     @Bind(R.id.ppv_owner)
     TextView ownerTV;
 
+    private int photoWidth;
+    private int photoHeight;
 
     public PPhotoView(Context context) {
         super(context);
+        init();
+    }
 
-        final View view = inflate(context, R.layout.pphoto_view, this);
-        ButterKnife.bind(context, view);
+    public PPhotoView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public PPhotoView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        inflate(getContext(), R.layout.pphoto_view, this);
+        ButterKnife.bind(this);
+
+        photoWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+        photoHeight = photoWidth / 5 * 3;
+    }
+
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        ButterKnife.bind(getContext(), this);
     }
 
     public void setContent(final PPhoto pphoto){
 
-        Picasso.with(getContext()).load(pphoto.photoFileURL).into(photoIV);
+        Picasso.with(getContext()).load(pphoto.photoFileURL)
+                .placeholder(getContext().getResources().getDrawable(R.color.primary_light))
+                .resize(photoWidth, photoHeight).centerCrop()
+                .into(photoIV);
         photoIV.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

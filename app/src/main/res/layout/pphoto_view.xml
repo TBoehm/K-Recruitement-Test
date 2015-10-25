@@ -2,10 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingTop="@dimen/double_margin"
-    android:paddingBottom="@dimen/double_margin"
-    android:background="@color/primary_light">
+    android:gravity="center_horizontal">
 
     <ImageView
         android:layout_width="fill_parent"
@@ -17,6 +14,8 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/ppv_owner"
-        android:layout_margin="@dimen/activity_horizontal_margin" />
+        android:textColor="@color/primary_text"
+        android:layout_marginTop="@dimen/half_margin"
+        android:layout_marginBottom="@dimen/double_margin" />
 
 </LinearLayout>
