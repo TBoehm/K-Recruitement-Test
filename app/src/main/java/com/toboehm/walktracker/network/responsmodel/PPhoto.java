@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Tobias Boehm on 24.10.2015.
  */
-public class PPhoto {
+public class PPhoto extends BaseModel {
 
     private static final String PHOTO_ID_ATTRIBUTE = "photo_id";
     private static final String PHOTO_FILE_URL_ATTRIBUTE = "photo_file_url";

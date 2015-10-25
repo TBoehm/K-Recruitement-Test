@@ -1,6 +1,7 @@
 package com.toboehm.walktracker.network.requests;
 
 import android.location.Location;
+import android.util.Log;
 
 import com.toboehm.walktracker.network.responsmodel.PPhotoResponse;
 
@@ -13,24 +14,33 @@ import rx.schedulers.Schedulers;
  */
 public class PhotoRequest extends Request<PPhotoResponse> {
 
+    private static final double AREA_DELTA = 0.0005;
+
+
+    public static PhotoRequest createFor(final Location currentLocation){
+        return new PhotoRequest(currentLocation);
+    }
+
+
     private final double minLongitude;
     private final double maxLongitude;
     private final double minLatitude;
     private final double maxLatitude;
 
 
-    private PhotoRequest(final Location lastLocation, final Location currentLocation){
+    private PhotoRequest(final Location currentLocation){
 
-        // determine long/lat deltas
-        final double longitudeDelta = Math.abs(currentLocation.getLongitude() - lastLocation.getLongitude());
-        final double latitudeDelta = Math.abs(currentLocation.getLatitude() - lastLocation.getLatitude());
+        // calculate a picture area around the current location
+        minLongitude = currentLocation.getLongitude() - AREA_DELTA;
+        maxLongitude = currentLocation.getLongitude() + AREA_DELTA;
 
-        // calculate ~50meter area around the current location by assuming that both locations lie around ~100meters apart
-        minLongitude = currentLocation.getLongitude() - longitudeDelta / 2;
-        maxLongitude = currentLocation.getLongitude() + longitudeDelta / 2;
+        minLatitude = currentLocation.getLatitude() - AREA_DELTA / 2;
+        maxLatitude = currentLocation.getLatitude() + AREA_DELTA / 2;
 
-        minLatitude = currentLocation.getLatitude() - latitudeDelta / 2;
-        maxLatitude = currentLocation.getLatitude() + latitudeDelta / 2;
+        Log.v("PhotoRequest Vars", "minLongitude = " + minLongitude +
+                                ", maxLongitude = " + maxLongitude +
+                                ", minLatitude = " + minLatitude +
+                                ", maxLatitude = " + maxLatitude);
     }
 
     @Override

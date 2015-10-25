@@ -18,7 +18,7 @@ public interface Panoramio {
     @Headers({
             "Content-Type: application/json"
     })
-    @GET("/get_panoramas.php?set=public&from=0&to=1&size=medium&mapfilter=false")
+    @GET("/get_panoramas.php?set=full&from=0&to=3&size=medium&mapfilter=false")
     Observable<PPhotoResponse> getPanorama(@Query("minx") double minLongitude, @Query("miny") double minLatitude,
                                    @Query("maxx") double maxLongitude, @Query("maxy") double maxLatitude);
 }
